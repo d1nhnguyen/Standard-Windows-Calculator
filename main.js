@@ -163,7 +163,6 @@ class InputHandler {
     }
 }
 
-// Calculator Engine Class
 class CalculatorEngine {
     constructor(displayManager, historyManager) {
         this.display = displayManager;
@@ -192,7 +191,6 @@ class CalculatorEngine {
         } else {
             result = this.inputHandler.handleDigit(value);
         }
-        // this.display.updateResult(result);
         this.display.display.textContent = result;
     }
 
@@ -242,8 +240,6 @@ class CalculatorEngine {
             this.justCalculated = true;
             return;
         }
-
-        // Handle '9 + 9 ='
         if (this.firstValue === null || this.waitingForNewInput) {
             return;
         }
@@ -256,13 +252,13 @@ class CalculatorEngine {
 
         this.history.addEntry(equation, formattedResult);
         this.display.updateResult(result);
-        this.display.clearEquation(); // Clear display after binary op
+        this.display.clearEquation();
 
         this.firstValue = result;
         this.operator = null;
         this.waitingForNewInput = true;
         this.justCalculated = true;
-        this.lastFullEquation = null; // <-- RESET
+        this.lastFullEquation = null;
     }
 
     calculate(first, op, second) {
@@ -301,10 +297,8 @@ class CalculatorEngine {
     }
 
     handlePercent() {
-        // --- REWRITTEN to behave like square root ---
         const currentValue = this.display.getCurrentValue();
         const result = currentValue / 100;
-        // Using a simple 'percent' string for the equation
         const equation = `percent(${this.display.format(currentValue)})`;
 
         this.display.updateResult(result);
@@ -312,13 +306,12 @@ class CalculatorEngine {
         
         this.waitingForNewInput = true;
         this.justCalculated = true; 
-        this.firstValue = result; // Store result for chaining
-        this.operator = null; // It's a terminal op
-        this.lastFullEquation = equation; // Store for equals
+        this.firstValue = result; 
+        this.operator = null; 
+        this.lastFullEquation = equation; 
     }
 
     handleSquareRoot() {
-        // --- REWRITTEN as requested ---
         const currentValue = this.display.getCurrentValue();
         
         if (currentValue < 0) {
@@ -332,20 +325,20 @@ class CalculatorEngine {
             const equation = `²√(${this.display.format(currentValue)})`;
 
             this.display.updateResult(result);
-            this.display.updateEquation(equation); // Show '²√(9)'
+            this.display.updateEquation(equation);
             
             this.waitingForNewInput = true;
             this.justCalculated = true;
-            this.firstValue = result; // Store '3' for chaining
-            this.operator = null; // It's a terminal op
-            this.lastFullEquation = equation; // Store '²√(9)' for equals
+            this.firstValue = result;
+            this.operator = null;
+            this.lastFullEquation = equation;
         }
     }
 
     handleNegate() {
         if (this.justCalculated) {
             this.justCalculated = false;
-            this.lastFullEquation = null; // <-- RESET
+            this.lastFullEquation = null;
         }
         const currentValue = this.display.getCurrentValue();
         this.display.updateResult(-currentValue);
@@ -357,7 +350,7 @@ class CalculatorEngine {
         this.operator = null;
         this.waitingForNewInput = false;
         this.justCalculated = false;
-        this.lastFullEquation = null; // <-- RESET
+        this.lastFullEquation = null;
         this.inputHandler.reset();
         this.display.updateResult('0');
         this.display.clearEquation();
@@ -367,7 +360,7 @@ class CalculatorEngine {
         this.inputHandler.reset();
         this.display.updateResult('0');
         this.justCalculated = false;
-        this.lastFullEquation = null; // <-- RESET
+        this.lastFullEquation = null;
     }
 
     handleBackspace() {
@@ -376,17 +369,15 @@ class CalculatorEngine {
             this.operator = null;
             this.display.clearEquation();
             this.justCalculated = false;
-            this.lastFullEquation = null; // <-- RESET
+            this.lastFullEquation = null;
         }
         
         const currentDisplay = this.display.display.textContent;
         const result = this.inputHandler.backspace(currentDisplay);
-        // this.display.updateResult(result);
         this.display.display.textContent = result;
     }
 }
 
-// UI Controller Class
 class UIController {
     constructor() {
         this.initializeElements();
@@ -412,12 +403,10 @@ class UIController {
     }
 
     bindEvents() {
-        // Sidebar toggle
         this.menuBtn.addEventListener('click', () => {
             this.appContainer.classList.toggle('sidebar-open');
         });
 
-        // Single event listener for all calculator buttons
         this.keypad.addEventListener('click', (e) => {
             const btn = e.target.closest('button');
             if (!btn || !btn.dataset.action) return;
@@ -425,7 +414,6 @@ class UIController {
             this.handleButtonClick(btn);
         });
 
-        // Keyboard support
         document.addEventListener('keydown', (e) => this.handleKeyboard(e));
     }
 
@@ -461,7 +449,6 @@ class UIController {
             case 'negate':
                 this.calculator.handleNegate();
                 break;
-            // Add cases for other buttons if needed (e.g., reciprocal, square)
         }
     }
 
@@ -499,5 +486,4 @@ class UIController {
     }
 }
 
-// Initialize the calculator
 const calculator = new UIController();
