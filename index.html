@@ -1,0 +1,126 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Windows 11 Calculator Layout</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div class="calculator-app">
+
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Calculator</h2>
+            </div>
+            <ul class="nav-list">
+                <li class="category-title">Calculator</li>
+                <li class="nav-item active">
+                    <span class="nav-icon">🖩</span> Standard
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">🔬</span> Scientific
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">📈</span> Graphing
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">&lt;/&gt;</span>
+                    Programmer
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">📅</span> Date calculation
+                </li>
+                
+                <li class="category-title">Converter</li>
+                <li class="nav-item">
+                    <span class="nav-icon">💵</span> Currency
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">🧊</span> Volume
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">📏</span> Length
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span> Settings
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-container">
+            <main class="calculator-body">
+                <header class="app-header">
+                    <button class="menu-btn"><span>&#x2261;</span></button>
+                    <h1>Standard</h1>
+                    <button class="history-toggle-btn"><span>&#x1F553;</span></button>
+                </header>
+
+                <section class="display-area">
+                    <div class="equation-display"></div>
+                    <div class="result-display">0</div>
+                </section>
+
+                <section class="keypad">
+                    <div class="memory-row">
+                        <button class="mem-btn">MC</button>
+                        <button class="mem-btn">MR</button>
+                        <button class="mem-btn">M+</button>
+                        <button class="mem-btn">M-</button>
+                        <button class="mem-btn">MS</button>
+                        <button class="mem-btn">M&#x25BE;</button>
+                    </div>
+
+                    <div class="keypad-grid">
+                        <button class="btn btn-op-light" data-action="percent">%</button>
+                        <button class="btn btn-op-light" data-action="clear-entry">CE</button>
+                        <button class="btn btn-op-light" data-action="clear">C</button>
+                        <button class="btn btn-op-light" data-action="backspace">&#x232B;</button>
+
+                        <button class="btn btn-op-light" data-action="reciprocal">¹/x</button>
+                        <button class="btn btn-op-light" data-action="square">x²</button>
+                        <button class="btn btn-op-light" data-action="sqrt">²√x</button>
+                        <button class="btn btn-op" data-action="operator" data-operator="÷">÷</button>
+
+                        <button class="btn btn-num" data-action="number" data-value="7">7</button>
+                        <button class="btn btn-num" data-action="number" data-value="8">8</button>
+                        <button class="btn btn-num" data-action="number" data-value="9">9</button>
+                        <button class="btn btn-op" data-action="operator" data-operator="×">×</button>
+
+                        <button class="btn btn-num" data-action="number" data-value="4">4</button>
+                        <button class="btn btn-num" data-action="number" data-value="5">5</button>
+                        <button class="btn btn-num" data-action="number" data-value="6">6</button>
+                        <button class="btn btn-op" data-action="operator" data-operator="−">−</button>
+
+                        <button class="btn btn-num" data-action="number" data-value="1">1</button>
+                        <button class="btn btn-num" data-action="number" data-value="2">2</button>
+                        <button class="btn btn-num" data-action="number" data-value="3">3</button>
+                        <button class="btn btn-op" data-action="operator" data-operator="+">+</button>
+
+                        <button class="btn btn-num" data-action="negate">+/-</button>
+                        <button class="btn btn-num" data-action="number" data-value="0">0</button>
+                        <button class="btn btn-num" data-action="number" data-value=".">,</button>
+                        <button class="btn btn-equals" data-action="equals">=</button>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="history-panel">
+                <div class="history-tabs">
+                    <button class="tab-btn active">History</button>
+                    <button class="tab-btn">Memory</button>
+                </div>
+                <div class="history-content-container">
+                    <p class="no-history-message">There's no history yet.</p>
+                    <ul class="history-list"></ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+        <script src="main.js" defer></script>
+    </body>
+    </html>

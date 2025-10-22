@@ -1,0 +1,342 @@
+/* --- Global Styles & Fonts --- */
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* --- Main App Layout --- */
+.calculator-app {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f3f3f3;
+}
+
+.main-container {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.calculator-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    padding: 12px;
+    flex-basis: 0;
+}
+
+/* --- Sidebar (Navigation Menu) --- */
+.sidebar {
+    display: none;
+    flex-direction: column;
+    flex-basis: 280px;
+    background-color: #ededed;
+    padding: 12px;
+    border-right: 1px solid #dcdcdc;
+}
+
+.calculator-app.sidebar-open .sidebar {
+    display: flex;
+}
+
+.sidebar-header h2 {
+    margin: 8px 16px;
+    font-size: 20px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.category-title {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 16px 8px;
+    color: #444;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background-color: #e0e0e0;
+}
+
+.nav-item.active {
+    background-color: #dcdcdc;
+    font-weight: 600;
+}
+
+.nav-icon {
+    margin-right: 16px;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+/* --- Calculator Header --- */
+.app-header {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+}
+
+.app-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 0 12px;
+    flex-grow: 1;
+}
+
+.menu-btn,
+.history-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.menu-btn:hover,
+.history-toggle-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* --- Display Area --- */
+.display-area {
+    flex-grow: 3; /* CHANGED: Was 1 */
+    flex-basis: 0; /* ADDED */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 8px;
+    text-align: right;
+    min-height: 100px;
+}
+
+.equation-display {
+    font-size: 16px;
+    color: #666;
+    min-height: 24px;
+    margin-bottom: 4px;
+}
+
+.result-display {
+    font-size: 48px;
+    font-weight: 700;
+    color: #111;
+}
+
+/* --- Keypad --- */
+.keypad {
+    flex-grow: 7; /* ADDED */
+    flex-basis: 0; /* ADDED */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Memory Row */
+.memory-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.mem-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    flex-grow: 1;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Keypad Grid */
+.keypad-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr); 
+    gap: 3px;
+}
+
+.btn {
+    font-size: 18px;
+    padding: 18px 0;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.btn:active {
+    background-color: #d0d0d0;
+}
+
+/* Button Variants */
+.btn-num {
+    background-color: #ffffff;
+    font-weight: 600;
+}
+.btn-num:hover {
+    background-color: #f7f7f7;
+}
+
+.btn-op-light {
+    background-color: #f9f9f9;
+    font-weight: 500;
+}
+.btn-op-light:hover {
+    background-color: #f0f0f0;
+}
+
+.btn-op {
+    background-color: #f0f0f0;
+    font-weight: 400;
+    font-size: 22px;
+}
+.btn-op:hover {
+    background-color: #e6e6e6;
+}
+
+.btn-equals {
+    background-color: #0078d4;
+    color: white;
+    font-size: 22px;
+    border-color: #0078d4;
+}
+.btn-equals:hover {
+    background-color: #005a9e;
+    border-color: #005a9e;
+}
+
+/* --- History Panel (Right Side) --- */
+.history-panel {
+    display: none;
+    border-left: 1px solid #dcdcdc;
+    padding: 12px;
+    flex-grow: 0;
+    flex-basis: 0;
+}
+
+.history-tabs {
+    display: flex;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.history-content-container {
+    padding: 20px 8px;
+    color: #888;
+    height: calc(100% - 45px);
+    overflow-y: auto;
+}
+
+.no-history-message {
+    text-align: center;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.history-list li {
+    padding: 12px 8px;
+    border-radius: 4px;
+    text-align: right;
+    cursor: pointer;
+}
+
+.history-list li:hover {
+    background-color: #e0e0e0;
+}
+
+.history-list .history-equation {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
+
+.history-list .history-result {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: -1px;
+}
+
+.tab-btn.active {
+    font-weight: 600;
+    color: #111;
+    border-bottom: 2px solid #0078d4;
+}
+
+/* --- RESPONSIVE LAYOUT CHANGES --- */
+@media (min-width: 680px) {
+    .history-panel {
+        display: block;
+        flex-grow: 2;
+    }
+    .calculator-body {
+        flex-grow: 3;
+    }
+}
+
+@media (min-width: 1024px) {
+    .history-panel {
+        flex-grow: 3;
+    }
+    .calculator-body {
+        flex-grow: 7;
+    }
+}
